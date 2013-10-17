@@ -14,11 +14,19 @@ address = udp(IP, port);
 set(address,'Timeout',30);
 fopen(address);
 
-for i=1:length(msg)
-    fwrite(address,msg{i})
-    fread(address)
+%Combines all seperate cells to one value to send
+newMSG = msg(1);
+for(i=2:length(msg))
+    newMSG = strcat(newMSG,msg(i));
 end
 
+fwrite(address,msg{i})
+fread(address)
+    
+    
+    
+    
+    
 fclose(address)
 echoudp('off')
 end
