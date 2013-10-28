@@ -13,18 +13,15 @@ echoudp('on',2111)
 address = udp(IP, port);
 set(address,'Timeout',30);
 fopen(address);
+get(address, 'Status') %logic next
 
 %Combines all seperate cells to one value to send
 newMSG = msg(1);
 for(i=2:length(msg))
     newMSG = strcat(newMSG,msg(i));
 end
-
-fwrite(address,msg{i})
-fread(address)
-    
-    
-    
+fwrite(address,newMSG)
+fread(address)   
     
     
 fclose(address)
