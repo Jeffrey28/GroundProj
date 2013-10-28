@@ -45,6 +45,8 @@ while(entry~=0)
     elseif(entry==8)
         IP = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
+    elseif(entry==0)
+        break
     else
         fprintf('Please enter valid command')
         pause(1)
@@ -54,4 +56,4 @@ while(entry~=0)
     clc
     fprintf('Next Command?\n\n')
 end
-fprintf('Thanks for using')
+fprintf('Thanks for using\n')

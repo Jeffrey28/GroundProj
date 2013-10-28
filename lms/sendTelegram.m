@@ -20,8 +20,8 @@ newMSG = msg(1);
 for(i=2:length(msg))
     newMSG = strcat(newMSG,msg(i));
 end
-fwrite(address,newMSG)
-fread(address)   
+fwrite(address,newMSG{1})
+readvalue = fread(address)   
     
     
 fclose(address)
