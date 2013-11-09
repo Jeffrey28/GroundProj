@@ -53,7 +53,6 @@ while(entry~=0)
     end
     %Prep for new command
     entry = 'na';
-    pause(10)
     clc
     fprintf('Next Command?\n\n')
 end
