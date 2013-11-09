@@ -14,8 +14,10 @@ fprintf('\nUse with LMS11x and LMS 15x \n')
 fprintf('For use instructions see README.MD\n\n')
 
 %Global Values
-global udpstate entry IP port
-entry = 'na'; IP = '192.168.0.52'; port = 2111;
+global entry IP port address
+entry = 'na'; IP = '192.168.0.52'; port = 2111; address=tcpip(IP, port, 'NetworkRole', 'client');
+fopen(address);
+
 
 while(entry~=0)
     fprintf('Commands:\n\t 1:Log in\n\t 2:Set Freq & Res\n\t 3:Configure Scan Content\n\t 4:Configure Scan Output\n\t 5:Store Parameters\n\t 6:Log out\n\t 7:Request Scan\n\t 8:Settings\n\n 0:QUIT\n')
@@ -46,7 +48,7 @@ while(entry~=0)
         IP = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
     elseif(entry==0)
-        break
+        breaks
     else
         fprintf('Please enter valid command')
         pause(1)
@@ -56,4 +58,5 @@ while(entry~=0)
     clc
     fprintf('Next Command?\n\n')
 end
+fclose(address);
 fprintf('Thanks for using\n')
