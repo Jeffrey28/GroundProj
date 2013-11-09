@@ -7,13 +7,10 @@
 % Set IP and Port in front end
 %% Function Header
 function RXT = sendTelegram (TXT)
-global IP port
-address=tcpip(IP, port, 'NetworkRole', 'client');
+global address
 
-fopen(address);
 fwrite(address,02); %STX
 fwrite(address,TXT);
 fwrite(address,03); %ETX
 RXT = fread(address);
-fclose(address);
 end
