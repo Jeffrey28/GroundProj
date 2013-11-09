@@ -10,24 +10,29 @@
 
 %% Setup
 clc,clear
-%Delclare telegram. See: INFO/command structure
-telegramCell = {};
-STX = {'02','02','02','02'};
-SPC = {'20'};
-
-%predefined: (See INFO/command structure)
-CMDtype = {'73','4D','4E'};
-CMD = {'52','75','6E'};
-
-%% Set Telegam
-% See: INFO/command structure
-telegramCell(1:4) = STX(1:4);
-%compute telegramCell(5:8) last for modular code
-telegramCell(9:11) = CMDtype(1:3);
-telegramCell(12) = SPC(1);
-telegramCell(13:15) = CMD(1:3);
-telegramCell(16) = {CHKSUM(telegramCell(9:15))};  %Check Sum
-
-telegramCell(5:8) = findLength(length(telegramCell(9:15)));
+%Delclare telegram. See: INFO/Command Structure
+telegram ='sMN Run';
 
 %%now to send telegram
+RXtelegram = sendTelegram(telegram);
+
+%% Receiver
+%code receive based on LIDAR output
+
+%Note: message is received as dec values of ascii char
+%Command Structure:
+%[STX][CMD Type][SPC][CMD][SPC][ERROR?][ETX]
+
+% Preset
+Error = 48; %0 ascii
+Success = 49; %1ascii
+RX_L = length(RXtelegram);
+
+%Grab "Change user level success"
+value = RXtelegram(RX_L-1); %Error value
+if(isequal(value,Success))
+    fprintf('Success\n')
+else
+    fprintf('Error in Change user level\n')
+end
+pause(10)

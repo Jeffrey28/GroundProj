@@ -26,7 +26,7 @@ RXtelegram = sendTelegram(telegram);
 
 % Preset
 Error = 48; %0 ascii
-Success = 49; %1ascii
+Success = 49; %1 ascii
 RX_L = length(RXtelegram);
 
 %Grab "Change user level success"
