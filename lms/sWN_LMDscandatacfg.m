@@ -2,13 +2,11 @@
 %Use of SICK LMS 111 
 %Daryl W. Bennett ~dwbennet@mtu.edu ~kd8bny@gmail.com
 %Purpose: Function to configure data content for scan
-%TODO: Make function
 
-%Notes: All binary (Could use HEX in future)
 %Command Structure:
-%[Start text][MSG length][CMDType][SPC][CMD][SPC][Data Channel]...
+%[STX][CMDType][SPC][CMD][SPC][Data Channel]...
 %   [Remission][Resolution][Unit][Encoder][Position][Device Name]...
-%       [Comment][Time][Output Rate][CHKSUM]
+%       [Comment][Time][Output Rate][ETX]
 
 %% Alt Values
 %Data Channel: [CH1:0x0100; CH2:0x0200; CH1&2:0x0300]
@@ -24,46 +22,24 @@
 %% Setup
 clc,clear
 %Delclare telegram. See: INFO/Command Structure
-telegramCell = {};
-STX = {'02','02','02','02'};
-SPC = {'20'};
-
-%Predefined: See INFO/Command Structure
-CMDtype = {'73','57','4E'};
-CMD = {'4C','4D','44','73','63','61','6E','64','61','74','61','63','66','67'};
-
-%Variables See: Alt Values
-dataCH = {'01','00'};
-REM = {'00'};
-RES = {'01'};
-UNIT = {'00'};
-ENC = {'00','00'};
-POS = {'00'};
-uname = {'00'};
-comment = {'00'};
-time = {'00'};
-OUT = {'00','01'};
-
-%% Set Telegam
-% See: INFO/command structure
-telegramCell(1:4) = STX(1:4);
-%Compute telegramCell(5:8) last for modular code
-telegramCell(9:11) = CMDtype(1:3);
-telegramCell(12) = SPC(1);
-telegramCell(13:26) = CMD(1:14);
-telegramCell(27) = SPC(1);
-telegramCell(28:29) = dataCH(1:2);
-telegramCell(30) = REM(1);
-telegramCell(31) = RES(1);
-telegramCell(32) = UNIT(1);
-telegramCell(33:34) = ENC(1:2);
-telegramCell(35) = POS(1);
-telegramCell(36) = uname(1);
-telegramCell(37) = comment(1);
-telegramCell(38) = time(1);
-telegramCell(39:40) = OUT(1:2);
-telegramCell(41) = {CHKSUM(telegramCell(9:40))};  %Check Sum
-
-telegramCell(5:8) = findLength(length(telegramCell(9:40)));
+telegram ='sWN LMDscandatacfg 01 00 1 1 0 00 00 0 0 0 0 +1';
 
 %%now to send telegram
+RXtelegram = sendTelegram(telegram);
+
+%% Receiver
+%code receive based on LIDAR output
+
+%Note: message is received as dec values of ascii char
+%Command Structure:
+%[STX][CMDType][SPC][CMD][SPC][ETX]
+
+%Grab "Error?" checks to see both are identical
+Success = [2,115,87,65,32,76,77,68,115,99,97,110,100,97,116,97,99,102,103,3];
+
+if(isequal(value,Success))
+    fprintf('Success')
+else
+    fprintf('Strange error....passed')
+end
+pause(10)
