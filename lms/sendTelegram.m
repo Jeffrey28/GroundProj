@@ -6,24 +6,14 @@
 %% NOTES
 % Set IP and Port in front end
 %% Function Header
-function readT = sendTelegram (msg)
+function RXT = sendTelegram (TXT)
 global IP port
-echoudp('off')
-echoudp('on',2111)
-address = udp(IP, port);
-set(address,'Timeout',30);
-fopen(address);
-get(address, 'Status') %logic next
+address=tcpip(IP, port, 'NetworkRole', 'client');
 
-%Combines all seperate cells to one value to send
-newMSG = msg(1);
-for(i=2:length(msg))
-    newMSG = strcat(newMSG,msg(i));
-end
-fwrite(address,newMSG{1})
-readvalue = fread(address)   
-    
-    
-fclose(address)
-echoudp('off')
+fopen(address);
+fwrite(address,02); %STX
+fwrite(address,TXT);
+fwrite(address,03); %ETX
+RXT = fread(address,10);
+fclose(address);
 end
