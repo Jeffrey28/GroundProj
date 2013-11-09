@@ -2,12 +2,10 @@
 %Use of SICK LMS 111 
 %Daryl W. Bennett ~dwbennet@mtu.edu ~kd8bny@gmail.com
 %Purpose: Function to Configure measurement angle of the output scan
-%TODO: Make function
 
-%Notes: All binary (Could use HEX in future)
 %Command Structure:
-%[Start text][MSG length][CMD Type][SPC][CMD][SPC][Status Code]...
-%   [Angle Res][Start Angle][Stop Angle][CHKSUM]
+%[STX][MSG length][CMD Type][SPC][CMD][SPC][Status Code]...
+%   [Angle Res][Start Angle][Stop Angle][ETX]
 
 %% Alt Values
 %Angular Resoultion: [0x9C4: 25deg; 0x1388: 5deg] %NOTE!!! DO NOT CHANGE!!!
@@ -18,34 +16,25 @@
 %% Setup
 clc,clear
 %Delclare telegram. See: INFO/Command Structure
-telegramCell = {};
-STX = {'02','02','02','02'};
-SPC = {'20'};
-
-%Predefined: See INFO/Command Structure
-CMDtype = {'73','57','4E'};
-CMD = {'4C','4D','50','6F','75','74','70','75','74','52','61','6E','67','65'};
-STAT = {'00','01'};
-ARES = {'00','00','13','88'};   %DO NOT EDIT!! See: Alt Values
-
-%Variables See: Alt Values
-STARTA = {'00','00','00','00'};
-STOPA = {'00','0D','BB','A0'};
-
-%% Set Telegam
-% See: INFO/command structure
-telegramCell(1:4) = STX(1:4);
-% Compute telegramCell(5:8) last for modular code
-telegramCell(9:11) = CMDtype(1:3);
-telegramCell(12) = SPC(1);
-telegramCell(13:26) = CMD(1:14);
-telegramCell(27) = SPC(1);
-telegramCell(28:29) = STAT(1:2);
-telegramCell(30:33) = ARES(1:4);
-telegramCell(34:37) = STARTA(1:4);
-telegramCell(38:41) = STOPA(1:4);
-telegramCell(42) = {CHKSUM(telegramCell(9:41))};  %Check Sum
-
-telegramCell(5:8) = findLength(length(telegramCell(9:41)))
+telegram ='sWN LMPoutputRange 1 1388 0 DBBA0';
 
 %%now to send telegram
+RXtelegram = sendTelegram(telegram);
+
+
+%% Receiver
+%code receive based on LIDAR output
+
+%Note: message is received as dec values of ascii char
+%Command Structure:
+%[STX][CMDType][SPC][CMD][SPC][ETX]
+
+%Grab "Error?" checks to see both are identical
+Success = [2,115,87,65,32,76,77,80,111,117,116,112,117,116,82,97,110,103,101,3];
+
+if(isequal(value,Success))
+    fprintf('Success')
+else
+    fprintf('Strange error....passed')
+end
+pause(10)
