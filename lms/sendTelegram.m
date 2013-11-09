@@ -14,6 +14,6 @@ fopen(address);
 fwrite(address,02); %STX
 fwrite(address,TXT);
 fwrite(address,03); %ETX
-RXT = fread(address,10);
+RXT = fread(address);
 fclose(address);
 end
