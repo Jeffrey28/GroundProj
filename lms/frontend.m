@@ -20,7 +20,7 @@ fopen(address);
 
 
 while(entry~=0)
-    fprintf('Commands:\n\t 1:Log in\n\t 2:Get Data\n\t 3:Log out\n\t 4:Settings\n\n 0:QUIT\n')
+    fprintf('Commands:\n\t 1:Set Scan\n\t 2:Get Scan\n\t 3:Settings\n\n 0:QUIT\n')
     entry = input('Command Entry:');
     if(entry==1)
         %Login/set modes
@@ -29,6 +29,7 @@ while(entry~=0)
         sWN_LMDscandatacfg
         sWN_LMPoutputRange
         sMN_mEEwriteall
+        sMN_Run
     
     elseif(entry==2)
         %Recieve datas
@@ -37,10 +38,6 @@ while(entry~=0)
         %sEN_LMDscandata
     
     elseif(entry==3)
-        %Logout
-        sMN_Run
-
-    elseif(entry==4)
         IP = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
     elseif(entry==0)
@@ -56,37 +53,3 @@ while(entry~=0)
 end
 fclose(address);
 fprintf('Thanks for using\n')
-
-%%Revision 1
-% fprintf('Commands:\n\t 1:Log in\n\t 2:Set Freq & Res\n\t 3:Configure Scan Content\n\t 4:Configure Scan Output\n\t 5:Store Parameters\n\t 6:Log out\n\t 7:Request Scan\n\t 8:Settings\n\n 0:QUIT\n')
-    % entry = input('Command Entry:');
-    % if(entry==1)
-    %     sMN_setAccessMode
-    
-    % elseif(entry==2)
-    %     sMN_mLMPsetscancfg
-    
-    % elseif(entry==3)
-    %     sWN_LMDscandatacfg
-    
-    % elseif(entry==4)
-    %     sWN_LMPoutputRange
-    
-    % elseif(entry==5)
-    %     sMN_mEEwriteall
-    
-    % elseif(entry==6)
-    %     sMN_Run
-    
-    % elseif(entry==7)
-    %     fprintf('Try also sEM_**')
-    %     sRN_LMDscandata
-    %     %sEN_LMDscandata
-    % elseif(entry==8)
-    %     IP = input('IP address of LMS 1xx: ','s');
-    %     port = input('Port of LMS 1xx: ');
-    % elseif(entry==0)
-    %     breaks
-    % else
-    %     fprintf('Please enter valid command')
-    %     pause(1)
