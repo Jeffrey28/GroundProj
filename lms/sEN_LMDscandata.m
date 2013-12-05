@@ -4,36 +4,35 @@
 %Purpose: Function to send permanent data
 %TODO: Make function
 
-%Notes: All binary (Could use HEX in future)
-%command structure:
-%[Start text][MSG length][CMD Type][SPC][CMD][SPC][Measurement][CHKSUM]
+%Command Structure:
+%[STX][CMD Type][SPC][CMD][SPC][Start/Finish][ETX]
 
 %% Alt Values
-%Measurement: [Stop: 0x00; Start: 0x01]
+%Start/Finish: [START: 1; Stop: 0]
 
 %% Setup
 clc,clear
-%Delclare telegram. See: INFO/command structure
-telegramCell = {};
-STX = {'02','02','02','02'};
-SPC = {'20'};
-
-%Predefined: See INFO/command structure
-CMDtype = {'73','45','4E'};
-CMD = {'4C','4D','44','73','63','61','6E','64','61','74','61'};
-MEAS = {'01'};
-
-%% Set Telegam
-% See: INFO/command structure
-telegramCell(1:4) = STX(1:4);
-% Compute telegramCell(5:8) last for modular code
-telegramCell(9:11) = CMDtype(1:3);
-telegramCell(12) = SPC(1);
-telegramCell(13:23) = CMD(1:11);
-telegramCell(24) = SPC(1);
-telegramCell(25) = MEAS(1);
-telegramCell(26) = {CHKSUM(telegramCell(9:25))};  %Check Sum
-
-telegramCell(5:8) = findLength(length(telegramCell(9:25)));
-
+telegram ='sEN LMDscandata 1';
 %%now to send telegram
+RXtelegram = sendTelegram(telegram);
+
+%% Receiver
+%code receive based on LIDAR output
+
+%Note: message is received as dec values of ascii char
+%Command Structure:
+%[STX][CMD Type][SPC][CMD][SPC][Start/Finish][ETX]
+
+% Preset
+Stop = 48; %0 ascii
+Start = 49; %1 ascii
+RX_L = length(RXtelegram);
+
+value = RXtelegram(RX_L-1);
+if(isequal(value,Start))
+    fprintf('Start\n')
+else
+    fprintf('Stop\n')
+end
+
+%Will now return stream
