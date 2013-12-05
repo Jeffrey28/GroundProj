@@ -10,7 +10,7 @@ LMS111 pwd: lms/
 
 - Run frontend.m
 
-Workflow (Form LMS 1xx Documentaion)
+Work flow (From LMS 1xx Documentaion)
 -------------------------------------
 Parameterize Scan
 1.) Login
@@ -30,9 +30,13 @@ Set Timestamp and Data Angle
 
 TODO
 ===================================
-- Write Receive code
+- Simulink blocks
+- stream
 
 
 Changelog
 ==================================
-8-1-13 Write Fontend and all write functions
+12-4-13 Too many changes. 
+	-Eased frontend
+	-Permeate stream added
+8-1-13 Write fontend and all write functions
