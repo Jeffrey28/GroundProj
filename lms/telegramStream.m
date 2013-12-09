@@ -12,7 +12,11 @@
 %Read pg 31-33
 
 %% Read Stream
-RXtelegram = sendTelegram(telegram);
+global address;
+while(1)
+RXtelegram = fread(address);
+delay(10);
+end
 %TODO: Timeout
 
 %realize Values
