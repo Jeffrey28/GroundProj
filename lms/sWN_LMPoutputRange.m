@@ -32,7 +32,7 @@ RXtelegram = sendTelegram(telegram);
 %Grab "Error?" checks to see both are identical
 Success = [2,115,87,65,32,76,77,80,111,117,116,112,117,116,82,97,110,103,101,3];
 
-if(isequal(value,Success))
+if(isequal(RXtelegram,Success))
     fprintf('Success')
 else
     fprintf('Strange error....passed')
