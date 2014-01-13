@@ -40,27 +40,18 @@ genError = 53;
 %Grab "Error"
 value = RXtelegram(21); %account for SPC & CMDtype 21is error location
 if(isequal(value,Success))
-    fprintf('Success\nLOGOUT to set values\n')
+    fprintf(log,'%14s \t %1s\n','sMN_mLMPsetscancfg','Y');
 elseif(isequal(value,FREQError))
-    fprintf('Error: Frequnecy\n')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','Frequnecy');
 elseif(isequal(value,RESError))
-    fprintf('Error:Resolution\n')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','Resolution');
 elseif(isequal(value,RESscanError))
-    fprintf('Error:Resolution and Scan\n')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','Res and Scan');
 elseif(isequal(value,SCANError))
-    fprintf('Error:Scan Area\n')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','Scan Area');
 elseif(isequal(value,genError))
-    fprintf('Error: Ahhhhhhhh IDK! (gen error)\n')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','gen error');
 else
-    fprintf('Strange error....passedthrough if statement')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','SHOULDNT HAPPEN');
+    break
 end
-pause(10)
-
-
-
-
-
-
-
-
-

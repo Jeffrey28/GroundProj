@@ -13,10 +13,16 @@ fprintf('Welcome to LIDAR Communication frontend ~dwbennet@mtu.edu ~kd8bny@gmail
 fprintf('\nUse with LMS11x and LMS 15x \n')
 fprintf('For use instructions see README.MD\n\n')
 
+%Clear Log
+fclose('all');
+delete('lmsLog.txt');
+
 %Global Values
-global entry IP port address
-entry = 'na'; IP = '192.168.0.52'; port = 2111; address=tcpip(IP, port, 'NetworkRole', 'client');
+global entry IP port address log
+entry = 'na'; IP = '192.168.0.52'; port = 2111; address=tcpip(IP, port, 'NetworkRole', 'client'); log=fopen('lmsLog.txt','w');
+
 fopen(address);
+fprintf(log,'%10s \t %7s\n','Module','Success');
 
 
 while(entry~=0)
@@ -41,7 +47,7 @@ while(entry~=0)
         IP = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
     elseif(entry==0)
-        breaks
+        break
     else
         fprintf('Please enter valid command')
         pause(1)

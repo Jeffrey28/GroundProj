@@ -38,8 +38,7 @@ RXtelegram = sendTelegram(telegram);
 Success = [2,115,87,65,32,76,77,68,115,99,97,110,100,97,116,97,99,102,103,3];
 
 if(isequal(RXtelegram,Success))
-    fprintf('Success')
+    fprintf(log,'%14s \t %1s\n','sWN_LMDscandatacfg','Y');
 else
-    fprintf('Strange error....passed')
+    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','Y','SHOULDNT HAPPEN');
 end
-pause(10)
