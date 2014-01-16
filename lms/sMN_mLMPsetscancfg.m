@@ -15,6 +15,7 @@
 
 %% Setup
 clc,clear
+global log
 %Delclare telegram. See: INFO/command structure
 telegram ='sMN mLMPsetscancfg +5000 +1 +5000 -450000 +2250000';
 %%now to send telegram

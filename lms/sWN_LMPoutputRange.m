@@ -15,6 +15,7 @@
 
 %% Setup
 clc,clear
+global log
 %Delclare telegram. See: INFO/Command Structure
 telegram ='sWN LMPoutputRange 1 1388 0 DBBA0';
 

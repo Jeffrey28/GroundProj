@@ -12,6 +12,7 @@
 
 %% Setup
 clc,clear
+global log
 telegram ='sEN LMDscandata 1';
 %%now to send telegram
 RXtelegram = sendTelegram(telegram);

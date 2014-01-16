@@ -10,6 +10,7 @@
 
 %% Setup
 clc,clear
+global log
 %Delclare telegram. See: INFO/Command Structure
 telegram ='sMN Run';
 

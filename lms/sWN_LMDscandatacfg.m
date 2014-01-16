@@ -21,6 +21,7 @@
 
 %% Setup
 clc,clear
+global log
 %Delclare telegram. See: INFO/Command Structure
 telegram ='sWN LMDscandatacfg 01 00 1 1 0 00 00 0 0 0 0 +1';
 

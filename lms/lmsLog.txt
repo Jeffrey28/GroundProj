@@ -1,2 +1,6 @@
-    Module 	 Success
+       Module 	 Success
 sMN SetAccessMode 	 Y
+sMN_mLMPsetscancfg 	 Y
+sMN_mLMPsetscancfg 	 Y	 sWN_LMPoutputRange 	 Y	 sMN_mEEwriteall 	 Y
+       sMN_Run 	 Y
+sEN_LMDscandata 	  Stop

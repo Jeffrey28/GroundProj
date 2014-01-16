@@ -44,9 +44,9 @@ while(entry~=0)
         sEN_LMDscandata
     
     elseif(entry==3)
-        IP = input('IP address of LMS 1xx: ','s');
+        address = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
-        fprintf('%13s','%13s','IP Changed',IP)
+        fprintf('%13s','%13s','IP Changed',address)
         fprintf('%13s','%13s','Port Changed',port)
     elseif(entry==0)
         break
