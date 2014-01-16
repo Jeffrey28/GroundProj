@@ -60,4 +60,5 @@ while(entry~=0)
     fprintf('Next Command?\n\n')
 end
 fclose(address);
+fclose('all');
 fprintf('Thanks for using\n')
