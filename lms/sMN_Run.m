@@ -31,8 +31,7 @@ RX_L = length(RXtelegram);
 %Grab "Change user level success"
 value = RXtelegram(RX_L-1); %Error value
 if(isequal(value,Success))
-    fprintf('Success\n')
+    fprintf(log,'%14s \t %1s\n','sMN_Run','Y');
 else
-    fprintf('Error in Change user level\n')
+    fprintf(log,'%14s \t %1s\n','sMN_Run','N');
 end
-pause(10)

@@ -30,9 +30,9 @@ RX_L = length(RXtelegram);
 
 value = RXtelegram(RX_L-1);
 if(isequal(value,Start))
-    fprintf('Start\n')
+    fprintf(log,'%14s \t %5s\n','sEN_LMDscandata','Start');
 else
-    fprintf('Stop\n')
+    fprintf(log,'%14s \t %5s\n','sEN_LMDscandata','Stop');
 end
 
 %Will now return stream

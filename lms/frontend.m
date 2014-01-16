@@ -1,4 +1,4 @@
-%% INFO
+clear%% INFO
 %Use of SICK LMS 111 
 %Daryl W. Bennett ~dwbennet@mtu.edu ~kd8bny@gmail.com
 %Purpose: Frontend to all functions
@@ -22,7 +22,7 @@ global entry IP port address log
 entry = 'na'; IP = '192.168.0.52'; port = 2111; address=tcpip(IP, port, 'NetworkRole', 'client'); log=fopen('lmsLog.txt','w');
 
 fopen(address);
-fprintf(log,'%10s \t %7s\n','Module','Success');
+fprintf(log,'%13s \t %7s\n','Module','Success');
 
 
 while(entry~=0)
@@ -40,12 +40,14 @@ while(entry~=0)
     elseif(entry==2)
         %Recieve datas
         fprintf('Try also sEM_**')
-        sRN_LMDscandata
-        %sEN_LMDscandata
+        %sRN_LMDscandata
+        sEN_LMDscandata
     
     elseif(entry==3)
         IP = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
+        fprintf('%13s','%13s','IP Changed',IP)
+        fprintf('%13s','%13s','Port Changed',port)
     elseif(entry==0)
         break
     else
