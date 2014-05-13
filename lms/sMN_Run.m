@@ -11,6 +11,7 @@
 %% Setup
 clc,clear
 global log
+log=fopen('lmsLog.txt','w');
 %Delclare telegram. See: INFO/Command Structure
 telegram ='sMN Run';
 

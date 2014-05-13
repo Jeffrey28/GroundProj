@@ -13,6 +13,7 @@
 %% Setup
 clc,clear
 global log
+log=fopen('lmsLog.txt','w');
 telegram ='sMN SetAccessMode 03 F4724744';
 %%now to send telegram
 RXtelegram = sendTelegram(telegram);
