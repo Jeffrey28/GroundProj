@@ -9,15 +9,15 @@
 %       [Comment][Time][Output Rate][ETX]
 
 %% Alt Values
-%Data Channel: [CH1:0x0100; CH2:0x0200; CH1&2:0x0300]
-%Remission: [No: 0x00; Yes: 0x01]
-%Resolution: [8'b: 0x00; 16'b: 0x01]
-%Encoder: [None: 0x0000; CH1: 0x0100]
-%Position: [No: 0x00; Yes: 0x01]
-%Device Name: [No: 0x00; Yes: 0x01]
-%Comment: [No: 0x00; Yes: 0x01]
-%Time: [No: 0x00; Yes: 0x01]
-%Output Rate: [All Scans: 0x0001; Each 2nd scan: 0x0002]
+%Data Channel: [CH1: 01 00; CH2: 02 00; CH1&2: 03 00]
+%Remission: [No: 0; Yes: 1]
+%Resolution: [8'b: 0; 16'b: 1]
+%Encoder: [None: 00; CH1: 01]
+%Position: [No: 0; Yes: 1]
+%Device Name: [No: 0; Yes: 1]
+%Comment: [No: 0; Yes: 1]
+%Time: [No: 0; Yes: 1]
+%Output Rate: [All Scans: +1; Each 2nd scan: +2]
 
 %% Setup
 clc,clear

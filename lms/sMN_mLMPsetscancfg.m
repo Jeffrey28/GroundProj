@@ -7,18 +7,18 @@
 %[STX][CMD Type][SPC][CMD][SPC][Scan Freq][Reserved][Angular Res][Start Angle][Stop Angle][ETX]
 
 %% Alt Values
-%Scan Frequency: [0x9C4: 25Hz; 0x1388: 50Hz]
-%Angular Resoultion: [0x9C4: 25deg; 0x1388: 5deg] %NOTE!!! If changed...
+%Scan Frequency: [+2500: 25Hz; +5000: 50Hz]
+%Angular Resoultion: [+2500: 25deg; +5000: 5deg] %NOTE!!! If changed...
 %       CHANGE "LMPoutputRange"
-%Start Angle: [0xFF F9 22 30 to 0x00 22 55 10]
-%Stop Angle: [0xFF F9 22 30 to 0x00 22 55 10]
+%Start Angle: [-450000 to +2250000]
+%Stop Angle: [-450000 to +2250000]
 
 %% Setup
 clc,clear
 global log
 log=fopen('lmsLog.txt','w');
 %Delclare telegram. See: INFO/command structure
-telegram ='sMN mLMPsetscancfg +5000 +1 +5000 -450000 +2250000';
+telegram ='sMN mLMPsetscancfg +5000 +1 +5000 +10 +20';
 %%now to send telegram
 RXtelegram = sendTelegram(telegram);
 

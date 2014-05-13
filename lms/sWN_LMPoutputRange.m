@@ -8,16 +8,16 @@
 %   [Angle Res][Start Angle][Stop Angle][ETX]
 
 %% Alt Values
-%Angular Resoultion: [0x9C4: 25deg; 0x1388: 5deg] %NOTE!!! DO NOT CHANGE!!!
+%Angular Resoultion: [+2500: 25deg; +5000: 5deg] %NOTE!!! DO NOT CHANGE!!!
 %       To change edit: "mLMPsetscancfg"
-%Start Angle: [0xFF F9 22 30 to 0x00 22 55 10]
-%Stop Angle: [0xFF F9 22 30 to 0x00 22 55 10]
+%Start Angle: [-450000 to +2250000]
+%Stop Angle: [-450000 to +2250000]
 
 %% Setup
 clc,clear
 global log
 %Delclare telegram. See: INFO/Command Structure
-telegram ='sWN LMPoutputRange 1 1388 0 DBBA0';
+telegram ='sWN LMPoutputRange 1 +5000 +10 +20';
 
 %%now to send telegram
 RXtelegram = sendTelegram(telegram);
