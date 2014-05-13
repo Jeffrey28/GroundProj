@@ -224,3 +224,4 @@ pip-log.txt
 ## LMS Logs
 #############
 lmsLog.txt
+lms/lmsLog.txt
