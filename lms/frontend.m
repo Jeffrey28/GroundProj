@@ -19,7 +19,7 @@ delete('lmsLog.txt');
 
 %Global Values
 global entry IP port address log
-entry = 'na'; IP = '192.168.0.52'; port = 2111; address=tcpip(IP, port, 'NetworkRole', 'client'); log=fopen('lmsLog.txt','w');
+entry = 'na'; IP = '192.168.0.46'; port = 2111; address=tcpip(IP, port, 'NetworkRole', 'client'); log=fopen('lmsLog.txt','w');
 
 fopen(address);
 fprintf(log,'%13s \t %7s\n','Module','Success');
