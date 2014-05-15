@@ -13,10 +13,11 @@
 %% Setup
 clc,clear
 global log
-
+log=fopen('lmsLog.txt','w');
 fprintf(log,'%17s\n','Starting Data Log');
-telegram ='sEN LMDscandata 1';
-    
+%telegram ='sEN LMDscandata 1';
+telegram ='sRN LMDscandata';
+
 %% Receiver
 %code receive based on LIDAR output
 
@@ -26,14 +27,28 @@ telegram ='sEN LMDscandata 1';
 %	[Measured Freq][Enco Pos][Enco Speed][Amount data][Data_ch][Pos][X][Y][Z][Xangle][Yangle][Zangle][angleType][DeviceName]
 %		[LengthName][Name][Comment][LengthComment][comment][time][...][ETX]
 
-%while(1)
     RXtelegram = sendTelegram(telegram);
-    %fprintf(log,'%151d\n',RXtelegram);
-    pause(10)
-%end
+    %load('RXdata.mat');
+    fprintf(log,'%14s \t %5s\n','sEN_LMDscandata','Start');
+    
+j=1;
+k=1;
+for i=122:183
+    if(RXtelegram(i) ~= 32)
+        charData(j) = char(RXtelegram(i));
+        j=j+1;
+    else
+        catData = strcat(charData);
+        data(k) = hex2dec(catData);
+        j=1;
+        %charData=0;
+        k=k+1;
+    end
+end
+lmsPlot(data);
 fclose(log);
-
-% Preset
+    
+%% Preset
 % Stop = 48; %0 ascii
 % Start = 49; %1 ascii
 % RX_L = length(RXtelegram);
@@ -46,3 +61,16 @@ fclose(log);
 % end
 
 %Will now return stream
+    
+%% Log use
+%     for i=1:length(RXtelegram)
+%         if(RXtelegram(i) == 32)
+%             fprintf(log,'\n');
+%         else
+%             fprintf(log,'%1s',RXtelegram(i));
+%         end
+%     end
+    %fprintf(log,'%151d\n',RXtelegram);
+
+
+
