@@ -17,7 +17,7 @@
 clc,clear
 global log
 %Delclare telegram. See: INFO/Command Structure
-telegram ='sWN LMPoutputRange 1 +5000 +10 +20';
+telegram ='sWN LMPoutputRange 1 +5000 +100000 +200000';
 
 %%now to send telegram
 RXtelegram = sendTelegram(telegram);

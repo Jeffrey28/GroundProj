@@ -12,7 +12,8 @@
 %Data Channel: [CH1: 01 00; CH2: 02 00; CH1&2: 03 00]
 %Remission: [No: 0; Yes: 1]
 %Resolution: [8'b: 0; 16'b: 1]
-%Encoder: [None: 00; CH1: 01]
+%Unit: [0]
+%Encoder: [None: 00 00; CH1: 01 00]
 %Position: [No: 0; Yes: 1]
 %Device Name: [No: 0; Yes: 1]
 %Comment: [No: 0; Yes: 1]
@@ -24,7 +25,7 @@ clc,clear
 global log
 log=fopen('lmsLog.txt','w');
 %Delclare telegram. See: INFO/Command Structure
-telegram ='sWN LMDscandatacfg 01 00 1 1 0 00 00 1 0 0 1 +1';
+telegram ='sWN LMDscandatacfg 01 00 0 1 0 00 00 1 0 0 0 +1';
 
 %%now to send telegram
 RXtelegram = sendTelegram(telegram);
