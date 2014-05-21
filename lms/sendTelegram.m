@@ -12,5 +12,6 @@ global address
 fwrite(address,02); %STX
 fwrite(address,TXT);
 fwrite(address,03); %ETX
-RXT = fread(address);
+RXT = fread(address); 
+%should be: RXT = fread(address,size,'*char');...... but matlab is dumb
 end
