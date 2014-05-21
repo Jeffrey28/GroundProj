@@ -23,7 +23,7 @@
 %% Setup
 clc,clear
 global log
-log=fopen('lmsLog.txt','w');
+log=fopen('lmsLog.txt','a+');
 %Delclare telegram. See: INFO/Command Structure
 telegram ='sWN LMDscandatacfg 01 00 0 1 0 00 00 1 0 0 0 +1';
 
