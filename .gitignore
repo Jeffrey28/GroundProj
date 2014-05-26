@@ -221,10 +221,7 @@ pip-log.txt
 *.asv
 
 #############
-## LMS Logs
+## LMS
 #############
-lmsLog.txt
-lms/lmsLog.txt
-lms/lmsLog.txt
-lms/lmsLog.txt
 *.mat
+lms/lmsLog.txt
