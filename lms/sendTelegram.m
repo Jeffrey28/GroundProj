@@ -18,7 +18,7 @@ i=0;
 dataStart=0; %Where data start within telegram
 while RXT~=3
     i=i+1;
-    [RXT, ETX] = fread(address,1);
+    RXT = fread(address,1);
     output(i) = RXT;
     if output(i)==32&&output(i-1)==49&&output(i-2)==65 %Catch data size "0hA1" in this case
         if dataStart==0
@@ -27,4 +27,5 @@ while RXT~=3
     end
 end
 RXT = output(1:i);
+ETX = length(RXT);
 end
