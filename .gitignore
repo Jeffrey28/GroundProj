@@ -225,3 +225,4 @@ pip-log.txt
 #############
 *.mat
 lms/lmsLog.txt
+*.autosave
