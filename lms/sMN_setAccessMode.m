@@ -16,7 +16,7 @@ global log
 log=fopen('lmsLog.txt','a+');
 telegram ='sMN SetAccessMode 03 F4724744';
 %%now to send telegram
-RXtelegram = sendTelegram(telegram);
+[RXtelegram, ETX] = sendTelegram(telegram);
 
 
 %% Receiver
@@ -30,13 +30,9 @@ RXtelegram = sendTelegram(telegram);
 Error = 48; %0 ascii
 Success = 49; %1 ascii
 
-%try
-    RX_L = length(RXtelegram);
-%catch exception
-
 %Grab "Change user level success"
-value = RXtelegram(RX_L-1); %Error value
-if(isequal(value,Success))
+%Error value
+if(isequal(ETX-1,Success))
     fprintf(log,'%14s \t %1s\n','sMN SetAccessMode','Y');
 else
     fprintf(log,'%14s \t %1s\n','sMN SetAccessMode','N');

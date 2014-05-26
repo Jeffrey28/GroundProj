@@ -20,7 +20,7 @@ log=fopen('lmsLog.txt','a+');
 %Delclare telegram. See: INFO/command structure
 telegram ='sMN mLMPsetscancfg +5000 +1 +5000 +100000 +200000';
 %%now to send telegram
-RXtelegram = sendTelegram(telegram);
+[RXtelegram, ETX] = sendTelegram(telegram);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Receiver

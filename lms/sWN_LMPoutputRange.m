@@ -18,10 +18,10 @@ clc,clear
 global log
 log=fopen('lmsLog.txt','a+');
 %Delclare telegram. See: INFO/Command Structure
-telegram ='sWN LMPoutputRange 1 +5000 +100000 +200000';
+telegram ='sWN LMPoutputRange 1 +5000 +100000 +900000';
 
 %%now to send telegram
-RXtelegram = sendTelegram(telegram);
+[RXtelegram, ETX] = sendTelegram(telegram);
 
 
 %% Receiver

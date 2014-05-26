@@ -28,7 +28,7 @@ log=fopen('lmsLog.txt','a+');
 telegram ='sWN LMDscandatacfg 01 00 0 1 0 00 00 1 0 0 0 +1';
 
 %%now to send telegram
-RXtelegram = sendTelegram(telegram);
+[RXtelegram, ETX] = sendTelegram(telegram);
 
 %% Receiver
 %code receive based on LIDAR output
