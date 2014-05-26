@@ -15,7 +15,7 @@ clc,clear
 global log
 log=fopen('lmsLog.txt','a+');
 fprintf(log,'%17s\n','Starting Data Log');
-%telegram ='sEN LMDscandata 1';
+% telegram ='sEN LMDscandata 1';
 telegram ='sRN LMDscandata';
 
 
@@ -28,21 +28,28 @@ telegram ='sRN LMDscandata';
 %	[Measured Freq][Enco Pos][Enco Speed][Amount data][Data_ch][Pos][X][Y][Z][Xangle][Yangle][Zangle][angleType][DeviceName]
 %		[LengthName][Name][Comment][LengthComment][comment][time][...][ETX]
 
-    RXtelegram = sendTelegram(telegram);
+    [RXtelegram, ETX, spaceElement] = sendTelegram(telegram);
     fprintf(log,'%14s \t %5s\n','sEN_LMDscandata','Start');
     
 j=1;
 k=1;
-for i=122:183 %rfread returns count
+for i=spaceElement+1:length(RXtelegram)-12 %rfread returns count
     if(RXtelegram(i) ~= 32)
         charData(j) = char(RXtelegram(i));
         j=j+1;
     else
         catData = strcat(charData);
-        data(k) = hex2dec(catData);
-        j=1;
-        %charData=0;
-        k=k+1;
+        try
+            data(k) = hex2dec(catData);
+            j=1;
+            charData=0;
+            k=k+1;
+        catch err
+            data(k)=0;
+            j=1;
+            charData=0;
+            k=k+1;
+        end
     end
 end
 lmsPlot(data);
