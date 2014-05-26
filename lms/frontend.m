@@ -26,7 +26,7 @@ fprintf(log,'%13s \t %7s\n','Module','Success');
 
 
 while(entry~=0)
-    fprintf('Commands:\n\t 1:Set Scan\n\t 2:Get Scan\n\t 3:Settings\n\n 0:QUIT\n')
+    fprintf('Commands:\n\t 1:Set Scan\n\t 2:Get Scan\n\t 3:Continuous Scan\n\t 4:Settings\n\n 0:QUIT\n')
     entry = input('Command Entry:');
     if(entry==1)
         %Login/set modes
@@ -44,6 +44,11 @@ while(entry~=0)
         sEN_LMDscandata
     
     elseif(entry==3)
+        for i=1:10000
+            sEN_LMDscandata
+            pause(.01)
+        end
+    elseif(entry==4)
         address = input('IP address of LMS 1xx: ','s');
         port = input('Port of LMS 1xx: ');
         fprintf('%13s','%13s','IP Changed',address)
