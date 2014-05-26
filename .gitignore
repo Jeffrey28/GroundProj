@@ -224,5 +224,6 @@ pip-log.txt
 ## LMS
 #############
 *.mat
+Ucommited/*
 lms/lmsLog.txt
 *.autosave
