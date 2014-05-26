@@ -9,6 +9,6 @@
 function lmsPlot (rho)
 
 clf
-theta=((10*pi)/180):((.5*pi)/180):((20*pi)/180);
+theta=(10+[1:length(rho)]/2)*pi/180;
 polar(theta,rho)
 end
