@@ -32,7 +32,7 @@ Success = 49; %1 ascii
 
 %Grab "Change user level success"
 %Error value
-if(isequal(ETX-1,Success))
+if(isequal(RXtelegram(ETX-1),Success))
     fprintf(log,'%14s \t %1s\n','sMN SetAccessMode','Y');
 else
     fprintf(log,'%14s \t %1s\n','sMN SetAccessMode','N');
