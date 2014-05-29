@@ -225,4 +225,9 @@ pip-log.txt
 #############
 *.mat
 lms/lmsLog.txt
+lmsLog.txt
 *.autosave
+#Simulink C & headers
+#Note needed as Simulink compiles code
+*.c
+*.h
