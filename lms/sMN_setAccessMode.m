@@ -12,6 +12,7 @@
 
 %% Setup
 function sMN_setAccessMode
+global log
 log=fopen('lmsLog.txt','a+');
 telegram ='sMN SetAccessMode 03 F4724744';
 %%now to send telegram

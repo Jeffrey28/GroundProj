@@ -9,7 +9,6 @@
 %[Start text][MSG length][CMD Type][SPC][CMD][CHKSUM]
 
 %% Setup
-clc,clear
 global log
 log=fopen('lmsLog.txt','a+');
 %Delclare telegram. See: INFO/Command Structure

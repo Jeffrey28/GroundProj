@@ -12,7 +12,6 @@
 
 %% Setup
 clc,clear
-global log
 log=fopen('lmsLog.txt','a+');
 telegram ='sRN LMDscandata';
 

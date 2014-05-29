@@ -30,18 +30,7 @@ telegram ='sWN LMDscandatacfg 01 00 0 1 0 00 00 1 0 0 0 +1';
 %%now to send telegram
 [RXtelegram, ETX] = sendTelegram(telegram);
 
-%% Receiver
-%code receive based on LIDAR output
+%% Logger
 
-%Note: message is received as dec values of ascii char
-%Command Structure:
-%[STX][CMDType][SPC][CMD][SPC][ETX]
-
-%Grab "Error?" checks to see both are identical
-Success = [2,115,87,65,32,76,77,68,115,99,97,110,100,97,116,97,99,102,103,3];
-
-if(isequal(RXtelegram,Success))
-    fprintf(log,'%14s \t %1s\n','sWN_LMDscandatacfg','Y');
-else
-    fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','Y','SHOULDNT HAPPEN');
-end
+fprintf(log,'%14s \t %1s\n','sWN_LMDscandatacfg','Y');
+fprintf(log,char(RXtelegram'));

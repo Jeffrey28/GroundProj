@@ -115,6 +115,7 @@ function InitializeConditions(block)
 %%
 function Start(block)
 
+config
 sMN_setAccessMode
 sMN_mLMPsetscancfg
 sWN_LMDscandatacfg

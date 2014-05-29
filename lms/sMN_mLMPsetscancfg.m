@@ -14,7 +14,6 @@
 %Stop Angle: [-450000 to +2250000]
 
 %% Setup
-clc,clear
 global log
 log=fopen('lmsLog.txt','a+');
 %Delclare telegram. See: INFO/command structure
@@ -40,7 +39,7 @@ SCANError = 52;
 genError = 53;
 
 %Grab "Error"
-value = RXtelegram(21); %account for SPC & CMDtype 21is error location
+value = RXtelegram(ETX-1); %account for SPC & CMDtype 21is error location
 if(isequal(value,Success))
     fprintf(log,'%14s \t %1s\n','sMN_mLMPsetscancfg','Y');
 elseif(isequal(value,FREQError))
@@ -55,5 +54,6 @@ elseif(isequal(value,genError))
     fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','gen error');
 else
     fprintf(log,'%14s \t %1s\t %14\n','sMN_mLMPsetscancfg','N','SHOULDNT HAPPEN');
+    frprintf(char(RXtelegram'));
     break
 end

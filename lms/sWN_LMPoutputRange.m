@@ -14,7 +14,6 @@
 %Stop Angle: [-450000 to +2250000]
 
 %% Setup
-clc,clear
 global log
 log=fopen('lmsLog.txt','a+');
 %Delclare telegram. See: INFO/Command Structure
