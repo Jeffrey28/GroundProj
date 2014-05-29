@@ -8,7 +8,13 @@
 
 %% Function Header
 function [RXT,ETX,dataStart] = sendTelegram (TXT)
-global address
+
+% Address
+IP = '192.168.0.46';
+PORT = 2111;
+address=tcpip(IP, PORT, 'NetworkRole', 'client');
+fopen(address);
+
 fwrite(address,02); %STX
 fwrite(address,TXT);
 fwrite(address,03); %ETX
@@ -28,4 +34,5 @@ while RXT~=3
 end
 RXT = output(1:i);
 ETX = length(RXT);
+fclose(address)
 end
