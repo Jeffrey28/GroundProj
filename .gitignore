@@ -231,3 +231,4 @@ lmsLog.txt
 #Note needed as Simulink compiles code
 *.c
 *.h
+*.tmw

@@ -1,4 +1,4 @@
-function setScan(block)
+function getScan(block)
 %MSFUNTMPL_BASIC A Template for a Level-2 MATLAB S-Function
 %   The MATLAB S-function is written as a MATLAB function with the
 %   same name as the S-function. Replace 'msfuntmpl_basic' with the 
@@ -38,9 +38,12 @@ block.NumInputPorts  = 0;
 block.NumOutputPorts = 0;
 
 % Setup port properties to be inherited or dynamic
-%block.SetPreCompInpPortInfoToDynamic;
-%block.SetPreCompOutPortInfoToDynamic;
+block.SetPreCompInpPortInfoToDynamic;
+block.SetPreCompOutPortInfoToDynamic;
 
+% Override input port properties
+block.InputPort(1).DatatypeID  = 0;  % double
+block.InputPort(1).Complexity  = 'Real';
 
 % Register parameters
 block.NumDialogPrms     = 0;
@@ -84,11 +87,11 @@ block.RegBlockMethod('Terminate', @Terminate); % Required
 function DoPostPropSetup(block)
 block.NumDworks = 1;
   
-  block.Dwork(1).Name            = 'x1';
-  block.Dwork(1).Dimensions      = 1;
-  block.Dwork(1).DatatypeID      = 0;      % double
-  block.Dwork(1).Complexity      = 'Real'; % real
-  block.Dwork(1).UsedAsDiscState = true;
+block.Dwork(1).Name            = 'x1';
+block.Dwork(1).Dimensions      = 1;
+block.Dwork(1).DatatypeID      = 0;      % double
+block.Dwork(1).Complexity      = 'Real'; % real
+block.Dwork(1).UsedAsDiscState = true;
 
 
 %%
@@ -114,14 +117,10 @@ function InitializeConditions(block)
 %%   C-MEX counterpart: mdlStart
 %%
 function Start(block)
-
-config
-sMN_setAccessMode
-sMN_mLMPsetscancfg
-sWN_LMDscandatacfg
-sWN_LMPoutputRange
-sMN_mEEwriteall
-sMN_Run
+for i=1:10000
+    sEN_LMDscandata
+    pause(.01)
+end
 
 %end Start
 
@@ -163,4 +162,3 @@ function Derivatives(block)
 function Terminate(block)
 
 %end Terminate
-
