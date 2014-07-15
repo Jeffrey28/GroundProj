@@ -232,3 +232,6 @@ lmsLog.txt
 *.c
 *.h
 *.tmw
+*.aliases
+*.lvbitx
+*.lvlps
