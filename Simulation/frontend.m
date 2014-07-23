@@ -2,6 +2,7 @@
 clc
 close all
 clear all
+addpath libs graphics
 t=0;
 SimLength=30;
 TimeStep=.01;
@@ -27,7 +28,7 @@ if recordBool
     set(gcf,'Renderer','zbuffer');
 end
 %% Setup test components
-Base=SimBase();
+Base= SimBase();
 ImportMap(Base,'workspace.bmp');
 agent=RobotStates();
 %% Simulation
